@@ -13,8 +13,8 @@
             <a href="{{ route('medias.create') }}" id="newmedia-cta" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                Add New
             </a>
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-3 py-1">Files</th>
                         <th scope="col" class="px-3 py-1">PROVIDER</th>
@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
                     @foreach ($model as $file)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr class="bg-white border-b">
                         <td class="px-3 py-1 mediaData">
                             <?php 
                             if(pathinfo($file->url, PATHINFO_EXTENSION) == 'pdf') {

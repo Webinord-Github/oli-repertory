@@ -1,26 +1,59 @@
+.admin__nav__container {
+    height: 65px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+
+    .admin__webinord__logo {
+        padding: 0px 15px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 120px;
+        }
+    }
+
+    .dropdown__container {
+        background-color: black;
+        margin-left: auto;
+
+        button {
+            background-color: #000;
+            color: #fff;
+        }
+    }
+}
+
 
 main {
     min-height: inherit;
     margin-top: -65px;
     display: flex;
+
     .dashboard__container {
         margin-top: 65px;
     }
+
     .container {
-        max-width: 100%!important;
+        max-width: 100% !important;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+
         .pagesContainer {
             width: calc(100% - 250px);
             padding: 20px;
+
             table {
                 margin-top: 20px;
             }
         }
+
         .formContainer {
             width: calc(100% - 250px);
         }
-          
+
         table {
             tbody {
                 tr {
@@ -28,6 +61,7 @@ main {
                         height: 4rem;
                         padding: 0.5rem 1rem;
                         max-width: min-content;
+
                         .mediaFile {
                             max-width: 100%;
                             object-fit: cover;
@@ -39,84 +73,125 @@ main {
             }
         }
     }
+
     .adminNav {
-        width: 250px;
-        top: 64px;
+        min-width: 250px;
+        margin-top: 65px;
         min-height: inherit;
         background-color: #000;
+
         .dashboard__div {
             display: flex;
             justify-content: flex-start;
             width: 100%;
             margin: 20px 0px;
             padding: 10px 0px;
+
             a {
                 color: #fff;
                 text-decoration: none;
             }
         }
+
         .sectionDiv {
             width: 100%;
-            max-height: 75%;
+            min-height: 85%;
             overflow-y: auto;
+            overflow-x: hidden;
+
             #general {
                 text-decoration: underline;
                 width: 100%;
                 padding: 10px;
             }
+
             p {
                 padding: 10px 0px;
                 color: #9ca3af;
                 font-size: 14px;
-                
+
             }
+
             .navLink {
-                a {
+
+                a,
+                p {
                     padding: 15px;
                     color: #fff;
                     display: flex;
-                } 
+                    font-size: 16px;
+                }
             }
+
             .navLink:hover {
                 background-color: #374151;
             }
-        }
-        .logoutDiv {
-            background-color: #ef4444;
-            width: 100%;
-            margin-top: 30px;
-            a {
-                padding: 15px;
-                color: #fff;
-                display: flex;
-                justify-content: center;
-                font-weight: bold;
-                width: 100%;
+
+            .admin__menu__dropdown:hover {
+                .admin__menu__dropdown__container {
+                    display: block !important;
+                }
+
+            }
+
+            .admin__menu__dropdown__container {
+                position: absolute;
+                display: none;
+
+                .admin__menu__dropdown__content {
+                    position: relative;
+                    background: #000;
+                    right: -250px;
+                    top: -55px;
+                    display: flex;
+                    flex-direction: column;
+                    width: 200px;
+
+                    .submenu__links {
+                        width: 100%;
+                        a {
+                            color: #fff;
+                            padding: 10px;
+                        }
+                    }
+
+                    .submenu__links:hover {
+                        background-color: #374151;
+                    }
+                }
+            }
+
+            .open__dropdown {
+                display: block;
             }
         }
-        .logoutDiv:hover {
-            filter: contrast(65%);
-        }
+
         .admin__logo {
             position: absolute;
-            bottom: 80px;
+            bottom: 0;
             width: inherit;
             display: flex;
             justify-content: center;
+            width: 250px;
+
             img {
                 width: 200px;
             }
         }
+    }
+
+    .dashboard__container {
+        width: 100%;
     }
 }
 
 
 @media (prefers-color-scheme: dark) {
     .bg-gray-100 {
-        background-color: rgb(243 244 246)!important;
+        background-color: rgb(243 244 246) !important;
     }
 }
 
 .tox-statusbar__branding {
-    display: none!important;
+    display: none !important;
 }

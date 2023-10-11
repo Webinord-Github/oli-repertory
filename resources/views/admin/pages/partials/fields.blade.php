@@ -35,9 +35,22 @@
             <textarea class="editor w-full border rounded py-2 text-gray-700 focus:outline-none" name="content" id="editor" cols="30" rows="10" value="{{$model->content}}">{{$model->content}}</textarea>
         </div>
     </div>
+    <div class="w-full mb-2 justify-center">
+        <div class="flex justify-center flex-col">   
+            <label for="dragContent">drag Content</label>
+            <div class="dragContent w-full border rounded py-2 text-gray-700 focus:outline-none" name="dragContent" id="dragContent" cols="30" rows="10" value="{{$model->dragContent}}"></div>
+        </div>
+    </div>
+    
     <div class="w-full flex justify-start">
         <input type="submit" class="w-60 mt-6 py-2 rounded bg-blue-500 hover:bg-blue-700 text-gray-100 focus:outline-none font-bold cursor-pointer" value="Publier">
     </div>
 </div>
 
+<style>
+.dragContent {
+    height: 500px;
+    border: 3px solid #000;
+}
+</style>
 

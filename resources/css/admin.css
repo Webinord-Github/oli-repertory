@@ -1,3 +1,35 @@
+.admin__nav__container {
+  height: 65px;
+  background-color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+.admin__nav__container .admin__webinord__logo {
+  padding: 0px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.admin__nav__container .admin__webinord__logo img {
+  width: 120px;
+}
+.admin__nav__container .dropdown__container {
+  background-color: black;
+  margin-left: auto;
+}
+.admin__nav__container .dropdown__container button {
+  background-color: #000;
+  color: #fff;
+}
+
 main {
   min-height: inherit;
   margin-top: -65px;
@@ -13,9 +45,9 @@ main .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 main .container .pagesContainer {
   width: calc(100% - 250px);
@@ -42,8 +74,8 @@ main .container table tbody tr .mediaData .mediaFile {
   height: 100px;
 }
 main .adminNav {
-  width: 250px;
-  top: 64px;
+  min-width: 250px;
+  margin-top: 65px;
   min-height: inherit;
   background-color: #000;
 }
@@ -64,8 +96,9 @@ main .adminNav .dashboard__div a {
 }
 main .adminNav .sectionDiv {
   width: 100%;
-  max-height: 75%;
+  min-height: 85%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 main .adminNav .sectionDiv #general {
   text-decoration: underline;
@@ -77,40 +110,55 @@ main .adminNav .sectionDiv p {
   color: #9ca3af;
   font-size: 14px;
 }
-main .adminNav .sectionDiv .navLink a {
+main .adminNav .sectionDiv .navLink a,
+main .adminNav .sectionDiv .navLink p {
   padding: 15px;
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-size: 16px;
 }
 main .adminNav .sectionDiv .navLink:hover {
   background-color: #374151;
 }
-main .adminNav .logoutDiv {
-  background-color: #ef4444;
-  width: 100%;
-  margin-top: 30px;
+main .adminNav .sectionDiv .admin__menu__dropdown:hover .admin__menu__dropdown__container {
+  display: block !important;
 }
-main .adminNav .logoutDiv a {
-  padding: 15px;
-  color: #fff;
+main .adminNav .sectionDiv .admin__menu__dropdown__container {
+  position: absolute;
+  display: none;
+}
+main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content {
+  position: relative;
+  background: #000;
+  right: -250px;
+  top: -55px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  font-weight: bold;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 200px;
+}
+main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links {
   width: 100%;
 }
-main .adminNav .logoutDiv:hover {
-  -webkit-filter: contrast(65%);
-          filter: contrast(65%);
+main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links a {
+  color: #fff;
+  padding: 10px;
+}
+main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links:hover {
+  background-color: #374151;
+}
+main .adminNav .sectionDiv .open__dropdown {
+  display: block;
 }
 main .adminNav .admin__logo {
   position: absolute;
-  bottom: 80px;
+  bottom: 0;
   width: inherit;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -118,9 +166,13 @@ main .adminNav .admin__logo {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 250px;
 }
 main .adminNav .admin__logo img {
   width: 200px;
+}
+main .dashboard__container {
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
