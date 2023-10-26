@@ -19,6 +19,9 @@
             </li>
             @endcan
             <li class="navLink">
+                <a href="/admin/posts"><i class="fa fa-hand-middle-finger mr-4 mt-0.5" aria-hidden="true"></i>Juifs</a>
+            </li>
+            <li class="navLink">
                 <a href="/admin/posts"><i class="fa fa-newspaper mr-4 mt-0.5" aria-hidden="true"></i>Posts</a>
             </li>
             <li class="navLink">
