@@ -19,6 +19,12 @@
             </li>
             @endcan
             <li class="navLink">
+                <a href="/admin/posts"><i class="fa fa-newspaper mr-4 mt-0.5" aria-hidden="true"></i>Posts</a>
+            </li>
+            <li class="navLink">
+                <a href="/admin/events"><i class="fa-solid fa-bell mr-4 mt-0.5" aria-hidden="true"></i>Events</a>
+            </li>
+            <li class="navLink">
                 <a href="{{ route('medias.index') }}"><i class="fa fa-download mr-4 mt-0.5" aria-hidden="true"></i>Médias</a>
             </li>
             <li class="navLink">
@@ -37,7 +43,7 @@
                         <div class="submenu__links">
                             <a href="">PARAM1</a>
                         </div>
-  
+
                     </div>
                 </div>
             </li>
