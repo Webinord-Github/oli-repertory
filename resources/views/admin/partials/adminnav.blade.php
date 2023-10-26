@@ -28,6 +28,9 @@
                 <a href="/admin/events"><i class="fa-solid fa-bell mr-4 mt-0.5" aria-hidden="true"></i>Events</a>
             </li>
             <li class="navLink">
+                <a href="/admin/events"><i class="fa-solid fa-bell mr-4 mt-0.5" aria-hidden="true"></i>Route oli</a>
+            </li>
+            <li class="navLink">
                 <a href="{{ route('medias.index') }}"><i class="fa fa-download mr-4 mt-0.5" aria-hidden="true"></i>Médias</a>
             </li>
             <li class="navLink">
