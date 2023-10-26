@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\Notification;
 use App\Http\Requests\PagesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 use Auth;
 
 class PagesController extends Controller
 {
 
-  
 
     /**
      * Display a listing of the resource.
@@ -40,8 +41,8 @@ class PagesController extends Controller
     }
 
     public function view($url) {
-        $page = Page::where('url', '=', $url)->firstOrFail();
-        return view('home.page')->with([
+        $page = Page::where('url', $url)->firstOrFail();
+        return view('frontend.page')->with([
             'page' => $page,
         ]);
     }
@@ -54,14 +55,23 @@ class PagesController extends Controller
      */
     public function store(PagesRequest $request)
     {
-
         $request->validate([
             'url' => 'required|unique:pages,url',
         ]);
+    
+        // Clean the 'url' input using Str::slug
+        $cleanUrl = Str::slug($request->input('url'));
+    
         Auth::user()->pages()->save(new Page($request->only([
-            'title','url','content'])));
-
-            return redirect()->route('pages.index')->with('status', 'Opération réussie');
+            'title', 'content'
+        ]) + ['url' => $cleanUrl]));
+    
+        $notification = new Notification();
+        $notification->sujet = 'Nouvelle page créée: ' . $request->input('title'); 
+        $notification->notif_link = '/' . $cleanUrl;
+        $notification->save();
+    
+        return redirect()->route('pages.index')->with('status', 'Opération réussie');
     }
 
     /**
@@ -104,9 +114,9 @@ class PagesController extends Controller
                 Rule::unique('pages')->ignore($page),
             ],
         ]);
-
+        $cleanUrl = Str::slug($request->input('url'));
         $page->fill($request->only([
-            'title','url','content',
+            'title',$cleanUrl,'content',
         ]));
 
         $page->save();

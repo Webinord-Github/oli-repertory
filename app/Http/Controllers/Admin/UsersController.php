@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rules\Password;
 use Auth;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -171,9 +172,7 @@ class UsersController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')->with('status', "$user->name was delete.");
-    }
+    }  
 
-
-  
-  
+    
 }

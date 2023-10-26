@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use View;
+use App\Models\Notification;
 
 class AppServiceProvider extends ServiceProvider
 {

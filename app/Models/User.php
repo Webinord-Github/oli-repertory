@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+
 
 class User extends Authenticatable
+
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'notifs_check',
     ];
 
     /**
@@ -42,27 +46,53 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function pages() {
+    public function pages()
+    {
         return $this->hasMany('App\Models\Page');
     }
 
-    public function medias() {
-        return $this->hasMany('App\Models\Media');
-    }
-    
-    public function roles() {
-        return $this->belongsToMany('App\Models\Role');
-    }
-    
-    public function isAdminOrEditor() {
-        return $this->hasAnyRole(['admin', 'editor']);
+    public function notification()
+    {
+        return $this->hasOne('App\Models\Notification');
     }
 
-    public function hasAnyRole($roles) {
+    public function conversations()
+    {
+        return $this->hasMany('App\Models\Conversation');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Models\Reply');
+    }
+
+    public function medias()
+    {
+        return $this->hasMany('App\Models\Media');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function isAdminOrEditor()
+    {
+        return $this->hasAnyRole(['Super Admin', 'editor']);
+    }
+
+    public function isAuth()
+    {
+        return $this->Auth()->check();
+    }
+
+    public function hasAnyRole($roles)
+    {
         return null != $this->roles()->whereIn('name', $roles)->first();
     }
 
-    public function hasRole($role) {
+    public function hasRole($role)
+    {
         return null != $this->roles()->where('name', $role)->first();
     }
 }

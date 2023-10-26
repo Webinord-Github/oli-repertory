@@ -24,17 +24,17 @@ class PagesTableSeeder extends Seeder
       
            $about = new Page([
                 'title' => 'About',
-                'url' => '/about',
+                'url' => 'about',
                 'content' => 'This is about us.'
            ]);
             $contact = new Page([
                 'title' => 'Contact',
-                'url' => '/contact',
+                'url' => 'contact',
                 'content' => 'You can contact us.'
             ]);
             $faq = new Page([
                 'title' => 'FAQ',
-                'url' => '/another-page',
+                'url' => 'another-page',
                 'content' => 'This is another page.'
             ]);
         
