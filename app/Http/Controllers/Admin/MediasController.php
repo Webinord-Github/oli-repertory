@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\NewMediaRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
-use File;
+// use File;
 use Auth;
 
 class MediasController extends Controller
@@ -28,6 +28,7 @@ class MediasController extends Controller
         // return view('admin.media.index', ['url' => $files]);
 
         $files = Media::paginate(20);
+        
 
         return view('admin.medias.index', ['model' => $files]);
 
@@ -68,7 +69,8 @@ class MediasController extends Controller
         // si l'url complet existe dans la db - base_path
         if($existing_file_url) {
             $file_iteration_url = $newfile_info . "_" . $count_file + 1 . "." . $newfile_info_ext;
-            $request->file->move(public_path('files'), $file_iteration_url);
+            // $request->file->move(public_path('files'), $file_iteration_url);
+            Storage::putFileAs('public/medias',$request->image, $file_iteration_url);
             Media::create([
                 'url' => $file_iteration_url,
                 'base_path' => $newFile,
@@ -87,7 +89,8 @@ class MediasController extends Controller
                 'file_size' => $fileSize,
                 'provider' => $newfile_info_ext,
             ]);
-            $request->file->move(public_path('files'), $newFile);
+            // $request->file->move(public_path('files'), $newFile);
+            Storage::putFileAs('public/medias',$request->file, $newFile);
         }
             return redirect()->route('medias.index');                
     }
@@ -145,8 +148,9 @@ class MediasController extends Controller
      */
     public function destroy(Media $media)
     {
-        if(File::exists(public_path('files/' . $media->url))) {
-            File::delete(public_path('files/' . $media->url));
+        if(Storage::exists('public/medias/' . $media->url)) {
+            // File::delete(public_path('files/' . $media->url));
+            Storage::delete('public/medias/' . $media->url);
             $media->delete();
             return redirect()->route('medias.index')->with('status', "$media->url has been deleted.");
         } else {

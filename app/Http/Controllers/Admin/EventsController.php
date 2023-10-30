@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Media;
+use Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EventsController extends Controller
@@ -43,11 +45,38 @@ class EventsController extends Controller
         $event->start_at = $request->start_at;
         $event->end_at = $request->end_at;
 
-        $image_ext =  $request->image->extension();
-        $image_name = strtolower(preg_replace("/\s+/", "", $request->title));
-        $image_fullname = $image_name . '.' . $image_ext;
-        Storage::putFileAs('public/img/events', $request->image, $image_name . '.' . $image_ext);
-        $event->image = $image_fullname;
+        $newFile = $request->image->getClientOriginalName();
+        $newfile_info = pathinfo($newFile, PATHINFO_FILENAME);
+        $newfile_info_ext = pathinfo($newFile, PATHINFO_EXTENSION);
+        $existing_file_url = Media::where('base_path', '=', $newFile)->first();
+        $count_file = Media::where('base_path', '=', $newFile)->count();
+        $fileSize = $request->file('image')->getSize() / 1024;
+
+        if($existing_file_url) {
+            $file_iteration_url = $newfile_info . "_" . $count_file + 1 . "." . $newfile_info_ext;
+            Storage::putFileAs('public/medias',$request->image, $file_iteration_url);
+            // Storage::move('public/medias' . $request->image, 'public/medias' . $file_iteration_url);
+            Media::create([
+                'url' => $file_iteration_url,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            $event->image = $file_iteration_url;
+        } else {
+            Media::create([
+                'url' => $newFile,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            Storage::putFileAs('public/medias',$request->image, $newFile);
+            $event->image = $newFile;
+        }
 
         $event->save();
 
@@ -79,18 +108,38 @@ class EventsController extends Controller
         $event->start_at = $request->start_at;
         $event->end_at = $request->end_at;
 
-        $image_name = strtolower(preg_replace("/\s+/", "", $request->title));
-        if ($request->image != null) {
-            Storage::delete('public/img/events/' . $event->image);
-            $image_ext =  $request->image->extension();
-            $image_fullname = $image_name . '.' . $image_ext;
-            Storage::putFileAs('public/img/events', $request->image, $image_fullname);
+        $newFile = $request->image->getClientOriginalName();
+        $newfile_info = pathinfo($newFile, PATHINFO_FILENAME);
+        $newfile_info_ext = pathinfo($newFile, PATHINFO_EXTENSION);
+        $existing_file_url = Media::where('base_path', '=', $newFile)->first();
+        $count_file = Media::where('base_path', '=', $newFile)->count();
+        $fileSize = $request->file('image')->getSize() / 1024;
+
+        if($existing_file_url) {
+            $file_iteration_url = $newfile_info . "_" . $count_file + 1 . "." . $newfile_info_ext;
+            Storage::putFileAs('public/medias',$request->image, $file_iteration_url);
+            // Storage::move('public/medias' . $request->image, 'public/medias' . $file_iteration_url);
+            Media::create([
+                'url' => $file_iteration_url,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            $event->image = $file_iteration_url;
         } else {
-            $image_ext = pathinfo(storage_path('public/img/events/' . $event->image), PATHINFO_EXTENSION);
-            $image_fullname = $image_name . '.' . $image_ext;
-            Storage::move('public/img/posts/' . $event->image, 'public/img/events/' . $image_name . '.' . $image_ext);
+            Media::create([
+                'url' => $newFile,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            Storage::putFileAs('public/medias',$request->image, $newFile);
+            $event->image = $newFile;
         }
-        $event->image = $image_fullname;
 
         $event->save();
 

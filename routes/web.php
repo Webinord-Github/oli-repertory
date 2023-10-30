@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\EventsController;
+use App\Http\Controllers\Admin\ToolsController;
+use App\Http\Controllers\Admin\ThematiquesController;
 use App\Http\Controllers\AlternativeAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -84,6 +86,20 @@ Route::post('/admin/events/store', [EventsController::class, 'store'])->middlewa
 Route::get('/admin/events/update/{id}', [EventsController::class, 'update'])->middleware('auth');
 Route::post('/admin/events/update/', [EventsController::class, 'storeUpdate'])->middleware('auth');
 Route::get('/admin/events/destroy/{id}', [EventsController::class, 'destroy'])->middleware('auth');
+
+Route::get('/admin/tools', [ToolsController::class, 'tools'])->name('tools')->middleware('auth');
+Route::get('/admin/tools/create', [ToolsController::class, 'create'])->middleware('auth');
+Route::post('/admin/tools/store', [ToolsController::class, 'store'])->middleware('auth');
+Route::get('/admin/tools/update/{id}', [ToolsController::class, 'update'])->middleware('auth');
+Route::post('/admin/tools/update/', [ToolsController::class, 'storeUpdate'])->middleware('auth');
+Route::get('/admin/tools/destroy/{id}', [ToolsController::class, 'destroy'])->middleware('auth');
+
+Route::get('/admin/thematiques', [ThematiquesController::class, 'thematiques'])->name('thematiques')->middleware('auth');
+Route::get('/admin/thematiques/create', [ThematiquesController::class, 'create'])->middleware('auth');
+Route::post('/admin/thematiques/store', [ThematiquesController::class, 'store'])->middleware('auth');
+Route::get('/admin/thematiques/update/{id}', [ThematiquesController::class, 'update'])->middleware('auth');
+Route::post('/admin/thematiques/update/', [ThematiquesController::class, 'storeUpdate'])->middleware('auth');
+Route::get('/admin/thematiques/destroy/{id}', [ThematiquesController::class, 'destroy'])->middleware('auth');
 
 
 

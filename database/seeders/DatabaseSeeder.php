@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             PagesTableSeeder::class,
             CategoriesTableSeeder::class,
+            ThematiquesTableSeeder::class,
         ]);
     }
 }

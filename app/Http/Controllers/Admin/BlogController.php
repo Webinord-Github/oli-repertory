@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Media;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -54,11 +55,37 @@ class BlogController extends Controller
         $post->status = $request->status;
         $post->published_at = $request->published_at;
 
-        $image_ext =  $request->image->extension();
-        $image_name = strtolower(preg_replace("/\s+/", "", $request->title));
-        $image_fullname = $image_name . '.' . $image_ext;
-        Storage::putFileAs('public/img/posts', $request->image, $image_name . '.' . $image_ext);
-        $post->image = $image_fullname;
+        $newFile = $request->image->getClientOriginalName();
+        $newfile_info = pathinfo($newFile, PATHINFO_FILENAME);
+        $newfile_info_ext = pathinfo($newFile, PATHINFO_EXTENSION);
+        $existing_file_url = Media::where('base_path', '=', $newFile)->first();
+        $count_file = Media::where('base_path', '=', $newFile)->count();
+        $fileSize = $request->file('image')->getSize() / 1024;
+
+        if($existing_file_url) {
+            $file_iteration_url = $newfile_info . "_" . $count_file + 1 . "." . $newfile_info_ext;
+            Storage::putFileAs('public/medias',$request->image, $file_iteration_url);
+            Media::create([
+                'url' => $file_iteration_url,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            $post->image = $file_iteration_url;
+        } else {
+            Media::create([
+                'url' => $newFile,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            Storage::putFileAs('public/medias',$request->image, $newFile);
+            $post->image = $newFile;
+        }
 
         $post->save();
         $post->categories()->sync($categories_selected);
@@ -79,7 +106,7 @@ class BlogController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255'],
             'body' => ['required', 'string'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,webp'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,webp'],
             'categories' => ['required', 'array'],
             'status' => ['required', 'string']
         ]);
@@ -104,18 +131,37 @@ class BlogController extends Controller
         $post->status = $request->status;
         $post->published_at = $request->published_at;
 
-        $image_name = strtolower(preg_replace("/\s+/", "", $request->title));
-        if ($request->image != null) {
-            Storage::delete('public/img/posts/' . $post->image);
-            $image_ext =  $request->image->extension();
-            $image_fullname = $image_name . '.' . $image_ext;
-            Storage::putFileAs('public/img/posts', $request->image, $image_fullname);
+        $newFile = $request->image->getClientOriginalName();
+        $newfile_info = pathinfo($newFile, PATHINFO_FILENAME);
+        $newfile_info_ext = pathinfo($newFile, PATHINFO_EXTENSION);
+        $existing_file_url = Media::where('base_path', '=', $newFile)->first();
+        $count_file = Media::where('base_path', '=', $newFile)->count();
+        $fileSize = $request->file('image')->getSize() / 1024;
+
+        if($existing_file_url) {
+            $file_iteration_url = $newfile_info . "_" . $count_file + 1 . "." . $newfile_info_ext;
+            Storage::putFileAs('public/medias',$request->image, $file_iteration_url);
+            Media::create([
+                'url' => $file_iteration_url,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            $post->image = $file_iteration_url;
         } else {
-            $image_ext = pathinfo(storage_path('public/img/posts/' . $post->image), PATHINFO_EXTENSION);
-            $image_fullname = $image_name . '.' . $image_ext;
-            Storage::move('public/img/posts/' . $post->image, 'public/img/posts/' . $image_name . '.' . $image_ext);
+            Media::create([
+                'url' => $newFile,
+                'base_path' => $newFile,
+                'description' => $request->description,
+                'user_id' => Auth::user()->id,
+                'file_size' => $fileSize,
+                'provider' => $newfile_info_ext,
+            ]);
+            Storage::putFileAs('public/medias',$request->image, $newFile);
+            $post->image = $newFile;
         }
-        $post->image = $image_fullname;
 
         $post->save();
         $post->categories()->sync($categories_selected);
