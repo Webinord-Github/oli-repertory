@@ -37,7 +37,7 @@
     <div class="w-full mb-2">
         <div class="flex items-center">   
             <label class="w-2/12 checkBoxLabel" for="roles"> {{$role->name}}</label>
-            <input class="mx-4 checkBox" type="checkbox" name="roles" value="{{$role->id}}" disabled="disabled"
+            <input class="mx-4 checkBox" type="radio" name="roles" value="{{$role->id}}" disabled="disabled"
             {{$model->hasRole($role->name)?'checked':''}}>
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="w-full mb-2">
         <div class="flex items-center">   
             <label class="w-2/12" for="roles"> {{$role->name}}</label>
-            <input class="mx-4" type="checkbox" name="roles" value="{{$role->id}}" 
+            <input class="mx-4" type="radio" name="roles" value="{{$role->id}}" 
             {{$model->hasRole($role->name)?'checked':''}}>
         </div>
     </div>

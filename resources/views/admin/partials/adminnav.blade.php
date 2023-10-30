@@ -11,6 +11,9 @@
                 <a href="{{ route('pages.index') }}"><i class="fa fa-file-text mr-4 mt-0.5" aria-hidden="true"></i>Pages</a>
             </li>
             <li class="navLink">
+                <a href="{{ route('pagesguard.index') }}"><i class="fa-solid fa-shield-halved mr-4 mt-0.5" aria-hidden="true"></i>Pages Guard</a>
+            </li>
+            <li class="navLink">
                 <a href="{{ route('conversations.index') }}"><i class="far fa-comments mr-4 mt-0.5" aria-hidden="true"></i>Forum</a>
             </li>
             @can('SuperAdmin', App\Models\User::class)

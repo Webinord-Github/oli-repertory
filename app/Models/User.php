@@ -76,9 +76,9 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role');
     }
 
-    public function isAdminOrEditor()
+    public function isAdmin()
     {
-        return $this->hasAnyRole(['Super Admin', 'editor']);
+        return $this->hasAnyRole(['Super Admin', 'Admin']);
     }
 
     public function isAuth()

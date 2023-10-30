@@ -56,6 +56,8 @@ Route::resource('/admin/medias', 'App\Http\Controllers\Admin\MediasController');
 
 Route::resource('/admin/pages', 'App\Http\Controllers\Admin\PagesController');
 
+Route::resource('/admin/pagesguard', 'App\Http\Controllers\Admin\PagesGuardController');
+
 Route::get('/forum', 'App\Http\Controllers\Admin\ConversationsController@view')->name('frontend.forum');
 
 Route::get('/dashboard', function () {

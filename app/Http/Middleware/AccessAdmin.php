@@ -17,7 +17,7 @@ class AccessAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->hasRole('Super Admin')) {
+        if(Auth::check() && Auth::user()->isAdmin()) {
             return $next($request);
         }
         return redirect('/');

@@ -1,3 +1,4 @@
+
 .admin__nav__container {
     height: 65px;
     background-color: #000;
@@ -44,9 +45,21 @@ main {
         .pagesContainer {
             width: calc(100% - 250px);
             padding: 20px;
+            margin-top: 80px;
 
             table {
                 margin-top: 20px;
+            }
+            .form__submit {
+                background-color: #347fe0;
+                height: auto;
+                border-radius: 10px;
+                padding: 8px 12px;
+                color: #fff;
+                font-weight: bold;
+            }
+            .form__submit:hover {
+                filter: contrast(65%);
             }
         }
 

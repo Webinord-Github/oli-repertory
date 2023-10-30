@@ -52,9 +52,22 @@ main .container {
 main .container .pagesContainer {
   width: calc(100% - 250px);
   padding: 20px;
+  margin-top: 80px;
 }
 main .container .pagesContainer table {
   margin-top: 20px;
+}
+main .container .pagesContainer .form__submit {
+  background-color: #347fe0;
+  height: auto;
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #fff;
+  font-weight: bold;
+}
+main .container .pagesContainer .form__submit:hover {
+  -webkit-filter: contrast(65%);
+          filter: contrast(65%);
 }
 main .container .formContainer {
   width: calc(100% - 250px);
