@@ -45,6 +45,15 @@ main {
             width: calc(100% - 250px);
             padding: 20px;
 
+            #add-cta {
+                margin-bottom: 2%;
+                width: fit-content;
+            }
+
+            #add-form {
+                display: none;
+            }
+
             table {
                 margin-top: 20px;
             }

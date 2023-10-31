@@ -2,30 +2,18 @@
   height: 80px;
   background-color: #000;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 #main__header .header__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
 }
 #main__header .header__container .logo {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -41,15 +29,9 @@
   cursor: pointer;
 }
 #main__header .header__container .notif .notif__int {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   color: #Fff;
   background-color: red;
@@ -67,19 +49,13 @@
   width: 250px;
   background-color: black;
   border-radius: 5px;
-  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-          box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 #main__header .header__container .notif .notifications__center .notification {
   color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
   height: 75px;
 }
 #main__header .header__container .notif .notifications__center .notification .notif__subject {
@@ -88,13 +64,10 @@
   text-align: center;
 }
 #main__header .header__container .notif .notifications__center .notification .unread__visual {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 #main__header .header__container .notif .notifications__center .notification .unread__visual .unread__dot {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 8px !important;
   height: 8px !important;

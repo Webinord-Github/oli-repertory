@@ -29,14 +29,15 @@
                     @foreach ($model as $file)
                     <tr class="bg-white border-b">
                         <td class="px-3 py-1 mediaData">
-                            <?php 
-                            if(pathinfo($file->url, PATHINFO_EXTENSION) == 'pdf') {
-                                ?>
-                                    <img class="mediaFile" src="/files/pdf-icon.png" alt="">
-                                <?php } ?>
-                                
-                                <img class="mediaFile" src="/files/{{$file->url}}" alt="">
-
+                            @if ($file->provider == 'pdf')
+                                <img class="mediaFile" src="/public/files/pdf_icon.png" alt="">
+                            @elseif ($file->provider == 'docx')
+                                <img class="mediaFile" src="/public/files/docx_icon.png" alt="">
+                            @elseif ($file->provider == 'png' || 'svg' || 'jpg' || 'jpeg')
+                                <img class="mediaFile" src="/storage/medias/{{$file->url}}" alt="">
+                            @else
+                                <img class="mediaFile" src="/public/files/file_icon.png" alt="">
+                            @endif
                         </td>
                         <td class="px-3 py-1 mediaData">
                                 <p><?php echo pathinfo($file->url, PATHINFO_EXTENSION) ?></p>                      

@@ -18,8 +18,21 @@
                 <a href="{{ route('users.index') }}"><i class="fa fa-user mr-4 mt-0.5" aria-hidden="true"></i>Utilisateurs</a>
             </li>
             @endcan
-            <li class="navLink">
-                <a href="/admin/posts"><i class="fa fa-newspaper mr-4 mt-0.5" aria-hidden="true"></i>Posts</a>
+            <li class="navLink admin__menu__dropdown">
+                <a href="Javascript:void(0)"><i class="fa fa-newspaper mr-4 mt-0.5" aria-hidden="true"></i>Articles</a>
+                <div class="admin__menu__dropdown__container">
+                    <div class="admin__menu__dropdown__content">
+                        <div class="submenu__links">
+                            <a href="/admin/posts">Voir les articles</a>
+                        </div>
+                        <div class="submenu__links">
+                            <a href="/admin/posts/create">Créer un article</a>
+                        </div>
+                        <div class="submenu__links">
+                            <a href="/admin/categories">Catégories</a>
+                        </div>
+                    </div>
+                </div>
             </li>
             <li class="navLink">
                 <a href="/admin/events"><i class="fa-solid fa-bell mr-4 mt-0.5" aria-hidden="true"></i>Events</a>
