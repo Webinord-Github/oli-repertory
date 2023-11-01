@@ -38,6 +38,10 @@
                 <a href="/admin/events"><i class="fa-solid fa-bell mr-4 mt-0.5" aria-hidden="true"></i>Events</a>
             </li>
             <li class="navLink">
+            <li class="navLink">
+                <a href="/admin/facts"><i class="fa-solid fa-lightbulb mr-4 mt-0.5" aria-hidden="true"></i>Fiches saviez-vous</a>
+            </li>
+            <li class="navLink">
                 <a href="/admin/tools"><i class="fa-solid fa-wrench mr-4 mt-0.5" aria-hidden="true"></i>Tools</a>
             </li>
             <li class="navLink">

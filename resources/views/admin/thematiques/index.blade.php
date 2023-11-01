@@ -41,15 +41,15 @@
                     @foreach ($thematiques as $thematique)
                     <tr class="bg-white border-b">
                         <td class="px-6 py-4">
-                            <p data-category="edit-{{ strtolower($thematique->name) }}" class="underline">{{ $thematique->name }}</p>
-                            <form data-category="edit-{{ strtolower($thematique->name) }}" class="w-full align-center flex edit-form hidden" action="/admin/thematiques/update/" method="post">
+                            <p data-category="edit-{{ strtolower($thematique->id) }}" class="underline">{{ $thematique->name }}</p>
+                            <form data-category="edit-{{ strtolower($thematique->id) }}" class="w-full align-center flex edit-form hidden" action="/admin/thematiques/update/" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $thematique->id }}">
                                 <div class="flex justify-center flex-col edit-input">
                                     <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $thematique->name }}" required autofocus />
                                 </div>
                                 <div class="flex items-center justify-end ml-4 edit-submit">
-                                    <p class="cursor-pointer cancel-form edit-{{ strtolower($thematique->name) }}">Annuler</p>
+                                    <p class="cursor-pointer cancel-form edit-{{ strtolower($thematique->id) }}">Annuler</p>
                                     <x-button class="ml-4">
                                         {{ __('Modifier') }}
                                     </x-button>
@@ -59,7 +59,7 @@
                         <td class="px-6 py-4 flex justify-end items-center">
                             <div class="relative inline-block text-left dropdownHover">
                                 <div class="relative inline-block text-left dropdownHover">
-                                    <p id="edit-{{ strtolower($thematique->name) }}" class="hover:bg-gray-200 py-1 px-4 dropdownHover cursor-pointer edit-cta"><i class="fa fa-pen-to-square mt-0.5" style="color: #000" aria-hidden="true"></i></p>
+                                    <p id="edit-{{ strtolower($thematique->id) }}" class="hover:bg-gray-200 py-1 px-4 dropdownHover cursor-pointer edit-cta"><i class="fa fa-pen-to-square mt-0.5" style="color: #000" aria-hidden="true"></i></p>
                                 </div>
                                 <div class="relative inline-block text-left dropdownHover">
                                     <a href="/admin/thematiques/destroy/{{ $thematique->id }}" onclick="return confirm('Supprimer cette catégorie?');" class="hover:bg-gray-200 py-1 px-4 dropdownHover"><i class="fa fa-trash mt-0.5" style="color: #ff0000" aria-hidden="true"></i></a>

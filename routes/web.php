@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\ThematiquesController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\FactsController;
 use App\Http\Controllers\AlternativeAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -94,6 +95,13 @@ Route::post('/admin/tools/store', [ToolsController::class, 'store'])->middleware
 Route::get('/admin/tools/update/{id}', [ToolsController::class, 'update'])->middleware('auth');
 Route::post('/admin/tools/update/', [ToolsController::class, 'storeUpdate'])->middleware('auth');
 Route::get('/admin/tools/destroy/{id}', [ToolsController::class, 'destroy'])->middleware('auth');
+
+Route::get('/admin/facts', [FactsController::class, 'facts'])->name('facts')->middleware('auth');
+Route::get('/admin/facts/create', [FactsController::class, 'create'])->middleware('auth');
+Route::post('/admin/facts/store', [FactsController::class, 'store'])->middleware('auth');
+Route::get('/admin/facts/update/{id}', [FactsController::class, 'update'])->middleware('auth');
+Route::post('/admin/facts/update/', [FactsController::class, 'storeUpdate'])->middleware('auth');
+Route::get('/admin/facts/destroy/{id}', [FactsController::class, 'destroy'])->middleware('auth');
 
 Route::get('/admin/thematiques', [ThematiquesController::class, 'thematiques'])->name('thematiques')->middleware('auth');
 // Route::get('/admin/thematiques/create', [ThematiquesController::class, 'create'])->middleware('auth');
