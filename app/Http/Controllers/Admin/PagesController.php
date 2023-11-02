@@ -63,7 +63,7 @@ class PagesController extends Controller
         $cleanUrl = Str::slug($request->input('url'));
     
         Auth::user()->pages()->save(new Page($request->only([
-            'title', 'content'
+            'title', 'content',
         ]) + ['url' => $cleanUrl]));
     
         $notification = new Notification();
@@ -115,8 +115,11 @@ class PagesController extends Controller
             ],
         ]);
         $cleanUrl = Str::slug($request->input('url'));
+
+        $page->url = $cleanUrl;
+        
         $page->fill($request->only([
-            'title',$cleanUrl,'content',
+            'title',$cleanUrl,'content','categorie'
         ]));
 
         $page->save();

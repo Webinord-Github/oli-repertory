@@ -15,22 +15,8 @@ class Page extends Model
         'url',
         'content',
         'user_id',
+        'categorie'
     ];
-    // public static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::created(function ($page) {
-    //         $user = $page->user;
-    //         $notification = $user->notifications()->first();
-
-    //         if ($notification) {
-    //             $notification->increment('count');
-    //         } else {
-    //             $user->notifications()->create(['count' => 1]);
-    //         }
-    //     });
-    // }
     
     public function user(){
         return $this->belongsTo('App\Models\User');

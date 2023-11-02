@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('url')->unique();
-            $table->string('content');
+            $table->string('content')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });

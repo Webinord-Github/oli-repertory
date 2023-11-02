@@ -10,7 +10,8 @@ use App\Http\Controllers\Admin\FactsController;
 use App\Http\Controllers\AlternativeAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Admin\DashboardController;
 
 
 
@@ -32,9 +33,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin', function() {
-    return view('admin.index');
-})->middleware('admin');
+// routes/web.php
+
+Route::get('/messages', 'App\Http\Controllers\MessageController@index')->name('messages')->middleware('auth');
+
+Route::post('/broadcast', [MessageController::class, 'broadcast'])->name('broadcast');
+Route::post('/receive', 'App\Http\Controllers\MessageController@receive')->name('receiveMessage');
+
+Route::get('/admin', [DashboardController::class, 'index'])->middleware('admin');
+
 
 Route::get('/sendmail', 'App\Http\Controllers\Admin\EmailController@index')->name('emails.test');
 Route::post('/sendmails', 'App\Http\Controllers\Admin\EmailController@sendEmail')->name('send.email');
@@ -59,6 +66,9 @@ Route::put('/admin/users/{user}/status', 'App\Http\Controllers\Admin\UsersContro
 Route::resource('/admin/medias', 'App\Http\Controllers\Admin\MediasController');
 
 Route::resource('/admin/pages', 'App\Http\Controllers\Admin\PagesController');
+
+Route::resource('/admin/pagesguard', 'App\Http\Controllers\Admin\PagesGuardController');
+Route::resource('/admin/usersguard', 'App\Http\Controllers\Admin\UsersGuardController');
 
 Route::get('/forum', 'App\Http\Controllers\Admin\ConversationsController@view')->name('frontend.forum');
 

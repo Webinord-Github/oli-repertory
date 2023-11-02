@@ -4,6 +4,9 @@
 
 <div class="container">
     <div class="forum__container">
+        @if(count($conversations) == 0) 
+            <p>Aucune conversations à afficher présentement!</p>
+        @endif
         @foreach($conversations as $conversation)
         <div class="forum__content">
             <div class="conv__container">

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="color-scheme" content="light only">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="robots" content="noindex, nofollow">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
         <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
@@ -12,9 +13,9 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
         <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/admin.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/admin.css', 'resources/js/app.js', 'resources/css/dashboard.css'])
     </head>
-    <body class="font-sans antialiased">
+    <body id="admin__body" class="admin__body">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.adminnav')
 
@@ -31,8 +32,8 @@
                   <main>
                 @include('admin.partials.adminnav')
                 <div class="dashboard__container">
+                    @yield('content')
                 </div>
-                @yield('content')
             </main>
         </div>
         @yield('admin-scripts')
