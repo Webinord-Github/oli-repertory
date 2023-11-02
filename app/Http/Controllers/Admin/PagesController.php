@@ -115,6 +115,9 @@ class PagesController extends Controller
             ],
         ]);
         $cleanUrl = Str::slug($request->input('url'));
+
+        $page->url = $cleanUrl;
+        
         $page->fill($request->only([
             'title',$cleanUrl,'content','categorie'
         ]));

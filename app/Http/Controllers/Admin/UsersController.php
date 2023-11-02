@@ -66,6 +66,7 @@ class UsersController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'verified' => 0,
             'password' => Hash::make($request->password),
         ]);
 
@@ -116,6 +117,9 @@ class UsersController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
+            $user = User::findOrFail($user->id); // Fetch the user model
+            $user->verified = $request->has('checkbox') ? 1 : 0;
+            $user->save();
     
             $user->roles()->sync(1);
             return back()->with('status', 'user-updated');
@@ -130,6 +134,10 @@ class UsersController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
+
+            $user = User::findOrFail($user->id); // Fetch the user model
+            $user->verified = $request->has('checkbox') ? 1 : 0;
+            $user->save();
             
             $user->roles()->sync($request->roles);
             

@@ -1,7 +1,10 @@
 <div class="admin__nav__container">
-    <div class="admin__webinord__logo">
-        <img src="{{ asset('files/logo-webinord-clair.png') }}" alt="">
+<form action="" method="GET" class="search__form">
+    <div class="search__container">
+        <input type="text" name="query" placeholder="Rechercher..." class="search__input">
+        <button type="submit" class="search__button"><i class="fas fa-search"></i></button>
     </div>
+</form>
     <!-- Settings Dropdown -->
     <div class="dropdown__container">
         <x-dropdown align="right" width="48">

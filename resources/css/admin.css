@@ -1,16 +1,26 @@
 .admin__nav__container {
   height: 65px;
-  background-color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px;
+  width: calc(100% - 250px);
+  margin-left: auto;
+  padding: 5px 30px;
 }
-.admin__nav__container .admin__webinord__logo {
-  padding: 0px 15px;
+.admin__nav__container .search__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+.admin__nav__container .search__form .search__container {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,27 +28,38 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
-.admin__nav__container .admin__webinord__logo img {
-  width: 120px;
+.admin__nav__container .search__form .search__container .search__input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-right: 8px;
+  width: 100%;
+  max-width: 600px;
+}
+.admin__nav__container .search__form .search__container .search__button {
+  position: relative;
+  left: -40px;
+  background-color: #29282d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 60px;
 }
 .admin__nav__container .dropdown__container {
-  background-color: black;
   margin-left: auto;
 }
 .admin__nav__container .dropdown__container button {
-  background-color: #000;
-  color: #fff;
+  background-color: transparent;
+  color: #000;
 }
 
 main {
   min-height: inherit;
-  margin-top: -65px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-main .dashboard__container {
-  margin-top: 65px;
+  background-color: #eef2f5;
 }
 main .container {
   max-width: 100% !important;
@@ -86,65 +107,71 @@ main .container table tbody tr .mediaData .mediaFile {
   width: 200px;
   height: 100px;
 }
-main .adminNav {
+main .adminNav__container {
   min-width: 250px;
-  margin-top: 65px;
-  min-height: inherit;
-  background-color: #000;
-}
-main .adminNav .dashboard__div {
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  width: 100%;
-  margin: 20px 0px;
-  padding: 10px 0px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: -65px 10px 0px 10px;
 }
-main .adminNav .dashboard__div a {
-  color: #fff;
-  text-decoration: none;
+main .adminNav__container .adminNav {
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  height: 98vh;
+  max-height: 98vh;
+  background-color: #29282d;
+  border-radius: 15px;
 }
-main .adminNav .sectionDiv {
+main .adminNav__container .adminNav .admin__logo {
+  width: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 250px;
+}
+main .adminNav__container .adminNav .admin__logo img {
+  width: 200px;
+}
+main .adminNav__container .adminNav .sectionDiv {
   width: 100%;
   min-height: 85%;
   overflow-y: auto;
   overflow-x: hidden;
 }
-main .adminNav .sectionDiv #general {
+main .adminNav__container .adminNav .sectionDiv #general {
   text-decoration: underline;
   width: 100%;
   padding: 10px;
 }
-main .adminNav .sectionDiv p {
-  padding: 10px 0px;
-  color: #9ca3af;
-  font-size: 14px;
-}
-main .adminNav .sectionDiv .navLink a,
-main .adminNav .sectionDiv .navLink p {
+main .adminNav__container .adminNav .sectionDiv .navLink a {
   padding: 15px;
   color: #fff;
+  font-weight: bold;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
 }
-main .adminNav .sectionDiv .navLink:hover {
-  background-color: #374151;
+main .adminNav__container .adminNav .sectionDiv .navLink:hover {
+  background-color: #8D8E91;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown:hover .admin__menu__dropdown__container {
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown:hover .admin__menu__dropdown__container {
   display: block !important;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown__container {
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown__container {
   position: absolute;
   display: none;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content {
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content {
   position: relative;
-  background: #000;
+  background: #29282d;
   right: -250px;
   top: -55px;
   display: -webkit-box;
@@ -155,44 +182,59 @@ main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropd
       -ms-flex-direction: column;
           flex-direction: column;
   width: 200px;
+  border-radius: 15px;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links {
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links {
   width: 100%;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links a {
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links a {
   color: #fff;
   padding: 10px;
 }
-main .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links:hover {
-  background-color: #374151;
+main .adminNav__container .adminNav .sectionDiv .admin__menu__dropdown__container .admin__menu__dropdown__content .submenu__links:hover {
+  background-color: #8D8E91;
+  border-radius: 15px;
 }
-main .adminNav .sectionDiv .open__dropdown {
+main .adminNav__container .adminNav .sectionDiv .open__dropdown {
   display: block;
 }
-main .adminNav .admin__logo {
-  position: absolute;
-  bottom: 0;
-  width: inherit;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 250px;
-}
-main .adminNav .admin__logo img {
-  width: 200px;
-}
-main .dashboard__container {
-  width: 100%;
-}
 
-@media (prefers-color-scheme: dark) {
-  .bg-gray-100 {
-    background-color: rgb(243, 244, 246) !important;
-  }
-}
 .tox-statusbar__branding {
   display: none !important;
+}
+
+.toggle-checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+  background: grey;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle-label:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 23px;
+  height: 23px;
+  background: white;
+  border-radius: 50%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background: #66bb6a;
+}
+
+.toggle-checkbox:checked + .toggle-label:after {
+  left: calc(100% - 24px);
 }/*# sourceMappingURL=admin.css.map */
