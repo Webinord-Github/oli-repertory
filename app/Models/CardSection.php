@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Thematique extends Model
+class CardSection extends Model
 {
     use HasFactory;
 
-    public function conversations() {
-        return $this->belongsToMany(Conversation::class);
+    public function card()
+    {
+        return $this->hasMany(Card::class);
     }
 }

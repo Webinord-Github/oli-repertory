@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\ThematiquesController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\FactsController;
+use App\Http\Controllers\Admin\CardsController;
 use App\Http\Controllers\AlternativeAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -112,6 +113,13 @@ Route::post('/admin/facts/store', [FactsController::class, 'store'])->middleware
 Route::get('/admin/facts/update/{id}', [FactsController::class, 'update'])->middleware('auth');
 Route::post('/admin/facts/update/', [FactsController::class, 'storeUpdate'])->middleware('auth');
 Route::get('/admin/facts/destroy/{id}', [FactsController::class, 'destroy'])->middleware('auth');
+
+Route::get('/admin/cards', [CardsController::class, 'cards'])->name('cards')->middleware('auth');
+Route::get('/admin/cards/create', [CardsController::class, 'create'])->middleware('auth');
+Route::post('/admin/cards/store', [CardsController::class, 'store'])->middleware('auth');
+Route::get('/admin/cards/update/{id}', [CardsController::class, 'update'])->middleware('auth');
+Route::post('/admin/cards/update/', [CardsController::class, 'storeUpdate'])->middleware('auth');
+Route::get('/admin/cards/destroy/{id}', [CardsController::class, 'destroy'])->middleware('auth');
 
 Route::get('/admin/thematiques', [ThematiquesController::class, 'thematiques'])->name('thematiques')->middleware('auth');
 // Route::get('/admin/thematiques/create', [ThematiquesController::class, 'create'])->middleware('auth');
