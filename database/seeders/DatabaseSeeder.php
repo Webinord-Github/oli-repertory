@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PagesTableSeeder::class,
             CategoriesTableSeeder::class,
             ThematiquesTableSeeder::class,
+            CardsSectionsTableSeeder::class,
         ]);
     }
 }

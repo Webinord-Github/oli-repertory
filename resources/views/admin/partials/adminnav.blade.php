@@ -42,6 +42,9 @@
                 <a href="/admin/facts"><i class="fa-solid fa-lightbulb mr-4 mt-0.5" aria-hidden="true"></i>Fiches saviez-vous</a>
             </li>
             <li class="navLink">
+                <a href="/admin/cards"><i class="fa-solid fa-lightbulb mr-4 mt-0.5" aria-hidden="true"></i>Fiches Intimidation</a>
+            </li>
+            <li class="navLink">
                 <a href="/admin/tools"><i class="fa-solid fa-wrench mr-4 mt-0.5" aria-hidden="true"></i>Tools</a>
             </li>
             <li class="navLink">

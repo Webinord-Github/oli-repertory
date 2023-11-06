@@ -48,32 +48,37 @@ class User extends Authenticatable
 
     public function pages()
     {
-        return $this->hasMany('App\Models\Page');
+        return $this->hasMany(Page::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 
     public function notification()
     {
-        return $this->hasOne('App\Models\Notification');
+        return $this->hasOne(Notification::class);
     }
 
     public function conversations()
     {
-        return $this->hasMany('App\Models\Conversation');
+        return $this->hasMany(Conversation::class);
     }
 
     public function replies()
     {
-        return $this->hasMany('App\Models\Reply');
+        return $this->hasMany(Reply::class);
     }
 
     public function medias()
     {
-        return $this->hasMany('App\Models\Media');
+        return $this->hasMany(Media::class);
     }
 
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role');
+        return $this->belongsToMany(Role::class);
     }
 
     public function isAdminOrEditor()

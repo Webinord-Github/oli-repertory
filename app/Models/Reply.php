@@ -15,9 +15,9 @@ class Reply extends Model
         'user_id',
     ];
     public function conversation(){
-        return $this->belongsTo('App\Models\Conversation');
+        return $this->belongsTo(Conversation::class);
     }
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 }
