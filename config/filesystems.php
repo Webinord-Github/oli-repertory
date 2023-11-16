@@ -46,8 +46,8 @@ return [
         
         'media_upload' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/files'),
-            'url' => env('APP_URL').'/files',
+            'root' => storage_path('app/public/medias'), // This path might need adjustment
+            'url' => env('APP_URL').'/storage', // Adjust the URL accordingly
             'visibility' => 'public',
         ],
 

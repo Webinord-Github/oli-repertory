@@ -30,13 +30,14 @@
                     <tr class="bg-white border-b">
                         <td class="px-3 py-1 mediaData">
                             @if ($file->provider == 'pdf')
-                                <img class="mediaFile" src="/public/files/pdf_icon.png" alt="">
-                            @elseif ($file->provider == 'docx')
-                                <img class="mediaFile" src="/public/files/docx_icon.png" alt="">
-                            @elseif ($file->provider == 'png' || 'svg' || 'jpg' || 'jpeg')
+                                <img class="mediaFile" src="{{asset('/storage/medias/pdf_icon.png')}}" alt="">
+                                @elseif ($file->provider == 'docx')
+                                <img class="mediaFile" src="{{asset('/storage/medias/ocx_icon.png')}}" alt="">
+                                @elseif ($file->provider == 'png' || 'svg' || 'jpg' || 'jpeg')
+        
                                 <img class="mediaFile" src="/storage/medias/{{$file->url}}" alt="">
-                            @else
-                                <img class="mediaFile" src="/public/files/file_icon.png" alt="">
+                                @else
+                                <img class="mediaFile" src="{{asset('/storage/medias/file_icon.png')}}" alt="">
                             @endif
                         </td>
                         <td class="px-3 py-1 mediaData">

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->string('base_path');
-            $table->string('description')-nullable();
+            $table->string('description')->nullable();
             $table->string('alt')->nullable();
             $table->timestamps();
             $table->integer('user_id');

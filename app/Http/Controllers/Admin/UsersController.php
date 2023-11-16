@@ -11,6 +11,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rules\Password;
+use App\Models\Chat;
 use Auth;
 use Carbon\Carbon;
 
@@ -68,7 +69,27 @@ class UsersController extends Controller
             'email' => $request->email,
             'verified' => 0,
             'password' => Hash::make($request->password),
+            'image' => 0,
         ]);
+
+        $allUsers = User::where('id', '!=', $user->id)->get();
+        foreach ($allUsers as $existingUser) {
+            $randomChatId = mt_rand(100, 999999999999999999); // Generate a random number between 3 and 18 digits
+    
+            // Check if the random chat id already exists in the database
+            $existingChat = Chat::where('chat_id', $randomChatId)->exists();
+            while ($existingChat) {
+                // If the generated random chat id already exists, generate a new one until it is unique
+                $randomChatId = mt_rand(100, 999999999999999999);
+                $existingChat = Chat::where('chat_id', $randomChatId)->exists();
+            }
+    
+            Chat::create([
+                'user1_id' => $user->id,
+                'user2_id' => $existingUser->id,
+                'chat_id' => $randomChatId,
+            ]);
+        }
 
         $user->roles()->sync($request->roles);
 

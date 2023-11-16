@@ -6,6 +6,6 @@
     <title>Custom Email</title>
 </head>
 <body>
-    <p>{{ $emailBody }}</p>
+    <p>{!! $emailBody !!}</p>
 </body>
 </html>

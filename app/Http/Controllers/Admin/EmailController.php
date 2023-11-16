@@ -19,7 +19,7 @@ class EmailController extends Controller
         if ($request->isMethod('post')) {
             // Logic to send an email goes here
             $to_email = 'info@webinord.ca';
-            $emailBody = $request->input('email_body');
+            $emailBody = "test";
             Mail::to($to_email)->send(new TestEmail($emailBody));
   
     

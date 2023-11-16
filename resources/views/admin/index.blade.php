@@ -15,7 +15,7 @@
         $count = 0;
         @endphp
         @foreach($users as $user)
-        @if($user->verified == 0)
+        @if($user->verified == 0 && $user->ban == 0)
         @php
         $count++;
         @endphp
@@ -38,6 +38,7 @@
     </div>
     <div class="new__users__container stats__div">
         <p class="dashboard__title">Utilisateurs actifs en <i>Real-Time</i></p>
+        <p class="stats__count">N/A</p>
 
     </div>
 </div>
@@ -74,10 +75,14 @@
                         <span id="offline__bull" class="user__bull">&bull;</span>
                         @endif
                     </td>
+                    @if($user->roles->first())
                     <td id="user__role">
                         {{$user->roles->first()->name}}
                     </td>
-                    <td id="user__image">
+                    @else
+                        <td style="color:red;font-weight:bold" id="user__role"> Aucun Rôle! </td>
+                    @endif
+                        <td id="user__image">
 
                     </td>
                     <td id="user__name">

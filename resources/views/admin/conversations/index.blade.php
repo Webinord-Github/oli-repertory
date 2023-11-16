@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="pagesContainer">
-        <h1 class="text-4xl font-bold pb-6">Pages</h1>
+        <h1 class="text-4xl font-bold pb-6">Sujets du forum</h1>
         @if (session('status'))
             <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-8 my-6" role="alert">
                 <p class="font-bold">{{ session('status') }}</p>

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Forum;
 use Illuminate\Http\Request;
+use App\Models\Page;
 
-class ForumsController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class ForumsController extends Controller
      */
     public function index()
     {
-        //
+        $pages = Page::orderBy('order')->get();
+        return view('admin.menu.index')->with([
+            'pages' => $pages,
+        ]);
     }
 
     /**
@@ -42,10 +45,10 @@ class ForumsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Forum  $forum
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show($id)
     {
         //
     }
@@ -53,10 +56,10 @@ class ForumsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Forum  $forum
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Forum $forum)
+    public function edit($id)
     {
         //
     }
@@ -65,10 +68,10 @@ class ForumsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Forum  $forum
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +79,10 @@ class ForumsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Forum  $forum
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Forum $forum)
+    public function destroy($id)
     {
         //
     }

@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/admin.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/admin.css', 'resources/js/app.js', 'resources/css/sortablemenu.css', 'resources/css/automatic-emails.css'])
 </head>
 
 <body class="font-sans antialiased">
@@ -32,8 +32,10 @@
         <!-- Page Content -->
         <main>
             @include('admin.partials.adminnav')
+            <div class="main__admin__container">
 
-            @yield('content')
+                @yield('content')
+            </div>
         </main>
     </div>
     @yield('scripts')

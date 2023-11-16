@@ -22,30 +22,93 @@ class PagesTableSeeder extends Seeder
 
         // create many pages
       
-           $about = new Page([
-                'title' => 'About',
-                'url' => 'about',
-                'content' => 'This is about us.',
-                'categorie' => '2'
+           $accueil = new Page([
+                'title' => 'Accueil',
+                'url' => '/',
+                'content' => null,
+                'categorie' => 1
            ]);
-            $contact = new Page([
-                'title' => 'Contact',
-                'url' => 'contact',
-                'content' => 'You can contact us.',
-                'categorie' => '2'
+            $devenirmembre = new Page([
+                'title' => 'Devenir membre',
+                'url' => 'sinscre',
+                'content' => null,
+                'categorie' => 1
             ]);
-            $faq = new Page([
-                'title' => 'FAQ',
-                'url' => 'another-page',
-                'content' => 'This is another page.',
-                'categorie' => '2'
+            $lafourmiliere = new Page([
+                'title' => 'La Fourmilière',
+                'url' => 'la-fourmiliere',
+                'content' => null,
+                'categorie' => 1
             ]);
-        
+            $lexique = new Page([
+                'title' => 'Lexique',
+                'url' => 'lexique',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $forum = new Page([
+                'title' => 'Forum',
+                'url' => 'forum',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $boiteaoutils = new Page([
+                'title' => 'Boîte à outils',
+                'url' => 'boite-a-outils',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $evenements = new Page([
+                'title' => 'Événements',
+                'url' => 'evenements',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $blogue = new Page([
+                'title' => 'Blogue',
+                'url' => 'blogue',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $saviezvous = new Page([
+                'title' => 'Saviez-vous?',
+                'url' => 'saviez-vous',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $lintimidation = new Page([
+                'title' => "L'intimidation",
+                'url' => 'lintimidation',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $lesmembres = new Page([
+                'title' => 'Les membres',
+                'url' => 'les-membres',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            $sources = new Page([
+                'title' => 'Sources',
+                'url' => 'sources',
+                'content' => null,
+                'categorie' => 1
+            ]);
+            
 
             $admin->pages()->saveMany([
-                $about,
-                $contact,
-                $faq,
+                $accueil,
+                $devenirmembre,
+                $lafourmiliere,
+                $lexique,
+                $forum,
+                $boiteaoutils,
+                $evenements,
+                $blogue,
+                $saviezvous,
+                $lintimidation,
+                $lesmembres,
+                $sources,
             ]);
     }
 }

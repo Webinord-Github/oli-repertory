@@ -21,8 +21,10 @@ class ConversationsController extends Controller
     public function index()
     {
         $conversations = Conversation::paginate(25);
+        
         return view('admin.conversations.index')->with([
             'conversations' => $conversations,
+
         ]);
     }
 
@@ -70,6 +72,7 @@ class ConversationsController extends Controller
     public function show($id) {
 
     }
+
 
     /**
      * Show the form for editing the specified resource.

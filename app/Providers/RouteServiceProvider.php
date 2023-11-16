@@ -39,6 +39,12 @@ class RouteServiceProvider extends ServiceProvider
             Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])
                 ->middleware('web')
                 ->name('password.email');
+
+                Route::middleware('preventRegister')->group(function () {
+                    Route::get('/register', [RegisteredUserController::class, 'create'])
+                        ->middleware(['guest'])
+                        ->name('register');
+                });
         });
     }
 

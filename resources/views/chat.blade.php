@@ -1,120 +1,67 @@
 @extends('layouts.mainheader')
 
 @section('content')
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <div class="chat__container">
     <div class="chat__users__list__container">
         <div class="chat__users__list">
             @foreach($users as $user)
-            <li data-chatid="{{$user->id}}">{{$user->name}}</li>
+            <a href="{{ route('messages.show', ['userId' => $user->id]) }}" class="ajax-link" data-chatid="{{$user->id}}">{{$user->name}}</a>
             @endforeach
         </div>
     </div>
-    <div class="chat">
-        <div class="top">
-            <div id="sender" class="auth__user">
-                <img class="user__image" src="{{ asset('files/male-placeholder-300x300.jpg') }}" alt="">
-                <div class="user__infos">
-                    <p>{{auth()->user()->name}}</p>
-                    <small>Online</small>
-                    <p>You</p>
-                </div>
-            </div>
-            <div id="receiver" class="auth__user" data-user-id="">
-                <img class="user__image" src="{{ asset('files/male-placeholder-300x300.jpg') }}" alt="">
-                <div class="user__infos">
-                    <p id="receiver__name">{{auth()->user()->name}}</p>
-                    <small>Online</small>
-                    <p>Receiver</p>
-                </div>
-            </div>
-        </div>
-        <div class="messages">
-            @foreach($messages as $message)
-            @if($message->sender_id == Auth::user()->id)
-            @include('broadcast', ['message' => $message->content])
-            @elseif($message->receiver_id == Auth::user()->id)
-            @include('receive', ['message' => $message->content])
-            @endif
-            @endforeach
 
-        </div>
-
-        <div class="bottom">
-            <form>
-                <input type="text" id="message" name="message" placeholder="Enter message">
-                <button type="submit"></button>
-            </form>
-        </div>
+    <div id="chat__content">
+        <p>Débuter une conversation</p>
     </div>
+    <div id="single__chat__content"></div>
 </div>
-<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-    let userId;
-    const pusher = new Pusher('{{config("13540e8ba13a368c04f6")}}', {
-        cluster: 'us3'
-    });
-    const channel = pusher.subscribe('public');
+    $(document).ready(function() {
 
+        var noChatContent = $('#chat__content').html(); // Store the initial content
+        var initialContent = "" // Store the initial content
+        var nextContent = ""; // Variable to store the next content
+        var pushedContent = ""; // Variable to store the pushed content
 
-    document.addEventListener('DOMContentLoaded', function() {
-        let singleusers = document.querySelectorAll(".chat__users__list li");
-        let receiverName = document.querySelector("#receiver__name");
-        let userId = document.querySelector("#receiver");
+        function loadContent(url) {
 
-        let storedUserId = localStorage.getItem('selectedUserId');
-        if (storedUserId) {
-            userId.setAttribute('data-user-id', storedUserId);
-        }
-        let storedUserName = localStorage.getItem('selectedUserName');
-        if (storedUserName) {
-            receiverName.innerHTML = storedUserName
+            $('#chat__content').hide(); // Hide the page content when loading new content
+            pushedContent = $('#single__chat__content').html(); // Save the current content before loading new content
+            $('#single__chat__content').empty(); // Clear the current content
+            $('#single__chat__content').load(url, function() {
+                event_init();
+            }); // Load the new content
         }
 
-
-        for (let singleuser of singleusers) {
-            singleuser.addEventListener("click", e => {
-                let selectedUserName = e.target.innerHTML;
-                receiverName.innerHTML = selectedUserName;
-                localStorage.setItem('selectedUserName', selectedUserName)
-                let selectedUserId = e.target.getAttribute('data-chatid');
-                userId.setAttribute('data-user-id', selectedUserId);
-                localStorage.setItem('selectedUserId', selectedUserId);
-            });
-        }
-
-        // receive messages
-        channel.bind('chat', function(data) {
-            $.post("/receive", {
-                    _token: '{{csrf_token()}}',
-                    message: data.message,
-                    receiver_id: userId.getAttribute('data-user-id')
-                })
-                .done(function(res) {
-                    $(".messages > .message").last().after(res);
-                    $(document).scrollTop($(document).height);
-                });
+        $('.ajax-link').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            loadContent(url);
+            history.pushState({
+                content: initialContent,
+                url: url
+            }, '', url); // Store the current content before loading new content
         });
-        $("form").submit(function(event) {
-            event.preventDefault();
 
-            $.ajax({
-                url: "/broadcast",
-                method: 'POST',
-                header: {
-                    'X-Socket-Id': pusher.connection.socket_id
-                },
-                data: {
-                    _token: '{{csrf_token()}}',
-                    message: $("form #message").val(),
-                    receiver_id: userId.getAttribute('data-user-id')
+        $(window).on('popstate', function(event) {
+            if (event.originalEvent.state === null) {
+                $('#single__chat__content').empty(); // Clear the content if there is no state
+                $('#chat__content').show(); // Show the initial content when there is no state
+            } else {
+                if (nextContent !== "") {
+                    $('#single__chat__content').html(nextContent); // Retrieve and set the next content
+                    nextContent = ""; // Clear the next content after using it
+                } else if (pushedContent !== "") {
+                    $('#single__chat__content').html(pushedContent); // Retrieve and set the pushed content
+                    pushedContent = ""; // Clear the pushed content after using it
+                } else {
+                    $('#chat__content').html(event.originalEvent.state.content); // Retrieve and set the previous content
+                    $('#single__chat__content').show(); // Show the retrieved content
                 }
-            }).done(function(res) {
-                $(".messages > .message").last().after(res);
-                $("form #message").val('');
-                $(document).scrollTop($(document).height());
-            });
+            }
         });
     });
 </script>
+
 @endsection

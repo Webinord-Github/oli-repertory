@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use App\Models\Menu;
 use Auth;
 
 class PagesController extends Controller
@@ -40,7 +41,8 @@ class PagesController extends Controller
         ]);
     }
 
-    public function view($url) {
+    public function view($url)
+    {
         $page = Page::where('url', $url)->firstOrFail();
         return view('frontend.page')->with([
             'page' => $page,
@@ -58,19 +60,19 @@ class PagesController extends Controller
         $request->validate([
             'url' => 'required|unique:pages,url',
         ]);
-    
+
         // Clean the 'url' input using Str::slug
         $cleanUrl = Str::slug($request->input('url'));
-    
+
         Auth::user()->pages()->save(new Page($request->only([
             'title', 'content',
         ]) + ['url' => $cleanUrl]));
-    
+
         $notification = new Notification();
-        $notification->sujet = 'Nouvelle page créée: ' . $request->input('title'); 
+        $notification->sujet = 'Nouvelle page créée: ' . $request->input('title');
         $notification->notif_link = '/' . $cleanUrl;
         $notification->save();
-    
+
         return redirect()->route('pages.index')->with('status', 'Opération réussie');
     }
 
@@ -117,9 +119,9 @@ class PagesController extends Controller
         $cleanUrl = Str::slug($request->input('url'));
 
         $page->url = $cleanUrl;
-        
+
         $page->fill($request->only([
-            'title',$cleanUrl,'content','categorie'
+            'title', $cleanUrl, 'content', 'categorie'
         ]));
 
         $page->save();
@@ -138,4 +140,25 @@ class PagesController extends Controller
         $page->delete();
         return redirect()->route('pages.index')->with('status', "$page->title was deleted.");
     }
+
+    public function updateMenuOrder(Request $request)
+    {
+        $orderData = json_decode($request->input('order'), true);
+     
+        
+        foreach ($orderData as $index => $orderItem) {
+            $pageId = $orderItem['pageId'];
+            $parentId = $orderItem['parentId'];
+            
+            // Assuming 'Page' is the model for your pages table
+            Page::where('id', $pageId)->update([
+                'order' => $index + 1,
+                'parent_id' => $parentId
+            ]);
+        }
+    
+        return response()->json(['success' => true]);
+    }
+    
+
 }

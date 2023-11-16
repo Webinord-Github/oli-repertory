@@ -26,6 +26,8 @@ class User extends Authenticatable
         'password',
         'notifs_check',
         'verified',
+        'image',
+        'ban',
     ];
 
     /**
@@ -77,6 +79,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role');
     }
 
+    public function messages()
+    {
+        return $this->belongsToMany('App\Models\Message');
+    }
+
     public function isAdmin()
     {
         return $this->hasAnyRole(['Super Admin', 'Admin']);
@@ -96,4 +103,5 @@ class User extends Authenticatable
     {
         return null != $this->roles()->where('name', $role)->first();
     }
+
 }

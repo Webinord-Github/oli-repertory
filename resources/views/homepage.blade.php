@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="main__container">
-        <p>homepage</p>
+        <div id="app">
+            <example-component></example-component>
+        </div>
     </div>
 @endsection
 
