@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ThematiquesController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\FactsController;
 use App\Http\Controllers\Admin\CardsController;
+use App\Http\Controllers\Admin\TestController;
 use App\Http\Controllers\AlternativeAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -86,19 +87,16 @@ Route::middleware('auth')->group(function () {
 
 Route::get('{url}', 'App\Http\Controllers\Admin\PagesController@view')->name('frontend.page');
 
-Route::get('/admin/posts', [BlogController::class, 'posts'])->name('posts')->middleware('auth');
-Route::get('/admin/posts/create', [BlogController::class, 'create'])->middleware('auth');
-Route::post('/admin/posts/store', [BlogController::class, 'store'])->middleware('auth');
-Route::get('/admin/posts/update/{id}', [BlogController::class, 'update'])->middleware('auth');
-Route::post('/admin/posts/update/', [BlogController::class, 'storeUpdate'])->middleware('auth');
-Route::get('/admin/posts/destroy/{id}', [BlogController::class, 'destroy'])->middleware('auth');
+Route::resource('admin/posts', BlogController::class)->middleware('auth');
+Route::resource('admin/events', EventsController::class)->middleware('auth');
 
-Route::get('/admin/events', [EventsController::class, 'events'])->name('events')->middleware('auth');
-Route::get('/admin/events/create', [EventsController::class, 'create'])->middleware('auth');
-Route::post('/admin/events/store', [EventsController::class, 'store'])->middleware('auth');
-Route::get('/admin/events/update/{id}', [EventsController::class, 'update'])->middleware('auth');
-Route::post('/admin/events/update/', [EventsController::class, 'storeUpdate'])->middleware('auth');
-Route::get('/admin/events/destroy/{id}', [EventsController::class, 'destroy'])->middleware('auth');
+Route::resource('admin/test', TestController::class)->middleware('auth');
+
+// Route::get('/admin/test/create', [TestController::class, 'create'])->middleware('auth');
+// Route::post('/admin/test/store', [TestController::class, 'store'])->middleware('auth');
+// Route::get('/admin/test/update/{id}', [TestController::class, 'update'])->middleware('auth');
+// Route::post('/admin/test/update/', [TestController::class, 'storeUpdate'])->middleware('auth');
+// Route::get('/admin/test/destroy/{id}', [TestController::class, 'destroy'])->middleware('auth');
 
 Route::get('/admin/tools', [ToolsController::class, 'tools'])->name('tools')->middleware('auth');
 Route::get('/admin/tools/create', [ToolsController::class, 'create'])->middleware('auth');
@@ -122,18 +120,9 @@ Route::post('/admin/cards/update/', [CardsController::class, 'storeUpdate'])->mi
 Route::get('/admin/cards/destroy/{id}', [CardsController::class, 'destroy'])->middleware('auth');
 
 Route::get('/admin/thematiques', [ThematiquesController::class, 'thematiques'])->name('thematiques')->middleware('auth');
-// Route::get('/admin/thematiques/create', [ThematiquesController::class, 'create'])->middleware('auth');
 Route::post('/admin/thematiques/store', [ThematiquesController::class, 'store'])->middleware('auth');
-// Route::get('/admin/thematiques/update/{id}', [ThematiquesController::class, 'update'])->middleware('auth');
 Route::post('/admin/thematiques/update/', [ThematiquesController::class, 'storeUpdate'])->middleware('auth');
 Route::get('/admin/thematiques/destroy/{id}', [ThematiquesController::class, 'destroy'])->middleware('auth');
-
-Route::get('/admin/categories', [CategoriesController::class, 'categories'])->name('categories')->middleware('auth');
-// Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->middleware('auth');
-Route::post('/admin/categories/store', [CategoriesController::class, 'store'])->middleware('auth');
-// Route::get('/admin/categories/update/{id}', [CategoriesController::class, 'update'])->middleware('auth');
-Route::post('/admin/categories/update/', [CategoriesController::class, 'storeUpdate'])->middleware('auth');
-Route::get('/admin/categories/destroy/{id}', [CategoriesController::class, 'destroy'])->middleware('auth');
 
 
 

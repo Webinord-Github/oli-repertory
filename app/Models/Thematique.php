@@ -12,4 +12,8 @@ class Thematique extends Model
     public function conversations() {
         return $this->belongsToMany(Conversation::class);
     }
+
+    public function posts() {
+        return $this->belongsToMany(Post::class);
+    }
 }

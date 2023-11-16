@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/rwzq3ta3q8axewq6bhxjvieo3wqy16dgu4ab1wo2xu3pba2c/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -31,7 +31,7 @@
 
         <!-- Page Content -->
         <main>
-            @include('admin.partials.adminnav')
+            @include('admin.partials.elementorblocs')
 
             @yield('content')
         </main>
