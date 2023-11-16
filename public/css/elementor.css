@@ -220,6 +220,7 @@
 .adminNav__container .adminNav #options .margin .margin-wrapper .inputs input::-webkit-outer-spin-button,
 .adminNav__container .adminNav #options .margin .margin-wrapper .inputs input::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  margin: 0;
 }
 .adminNav__container .adminNav #options .margin .margin-wrapper .inputs input {
   width: 60px;
